@@ -16,9 +16,6 @@ def quicksort(lst: list) -> None:
             Quick(q + 1, r)
     Quick(0, len(lst) - 1)
         
-      
-
-                
 
 def insertionsort(lst: list) -> None:
    
@@ -30,7 +27,8 @@ def insertionsort(lst: list) -> None:
            lst[j + 1] = lst[j]
            j = j -1
        lst[j + 1] = key 
-       
+
+
 def mergesort(lst: list) -> None:
     def MergeSort(p, r):
         if p < r:
@@ -43,33 +41,29 @@ def mergesort(lst: list) -> None:
         n1 = q - p + 1
         n2 = r - q
 
-        L = [None] * (n1 + 2)
-        R = [None] * (n2 + 2)
+        L = lst[p:p+n1]
+        R = lst[q+1:q+1+n2]
 
-        for i in range(n1):
-            lst[i] = lst[p + i - 1]
-        
-        for j in range(n2):
-            lst[j] = lst[q + j]
-
-        L[n1 + 1] = None
-        R[n2 + 1] = None
-
-        i = 1
-        j = 1
+        i = j = 0
 
         for k in range(p, r + 1):
-            if L[i] < R[j]:
+            if j >= n2 or (i < n1 and L[i] < R[j]):
                 lst[k] = L[i]
-                i = i + 1
+                i += 1
             else:
                 lst[k] = R[j]
-                j = j + 1
+                j += 1
+
     MergeSort(0, len(lst) - 1)
 
-
 def mergesort_hybrid(lst: list) -> None:
-    pass
+    if len(lst) < []:
+    insertionsort(lst)
+else:
+    quicksort(lst)
 
 def quicksort_hybrid(lst: list) -> None:
-    pass
+    if len(lst) < []:
+    insertionsort(lst)
+else:
+    quicksort(lst)
